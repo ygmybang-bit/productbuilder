@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A thoughtful digital studio helping good ideas move forward.">
+	<title>Northstar Studio | Ideas, made clear</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #17211f;
+			--muted: #66716d;
+			--paper: #f7f8f3;
+			--line: #dce2d9;
+			--lime: #d4f36a;
+			--coral: #f27d61;
+			--teal: #1d7771;
+			--max-width: 1160px;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: "DM Sans", sans-serif;
+			line-height: 1.5;
+		}
+		a { color: inherit; text-decoration: none; }
+		.wrap { width: min(var(--max-width), calc(100% - 48px)); margin: 0 auto; }
+
+		header {
+			padding: 24px 0;
+			border-bottom: 1px solid var(--line);
+		}
+		nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+		.logo { font-family: "Space Grotesk", sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: 0; }
+		.logo span { color: var(--teal); }
+		.nav-links { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: .92rem; }
+		.nav-links a:hover { color: var(--ink); }
+		.nav-button, .hero-button {
+			display: inline-flex; align-items: center; justify-content: center;
+			border-radius: 4px; font-weight: 700; transition: transform .2s ease, background .2s ease;
+		}
+		.nav-button { padding: 10px 16px; color: var(--ink); background: var(--lime); }
+		.nav-button:hover, .hero-button:hover { transform: translateY(-2px); }
+
+		.hero { padding: 92px 0 104px; position: relative; overflow: hidden; }
+		.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: center; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--teal); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+		.eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--coral); }
+		h1, h2 { font-family: "Space Grotesk", sans-serif; letter-spacing: 0; line-height: 1.05; }
+		h1 { max-width: 640px; margin: 20px 0 24px; font-size: clamp(3.2rem, 7vw, 6.7rem); }
+		.hero-copy { max-width: 500px; margin: 0 0 32px; color: var(--muted); font-size: 1.08rem; }
+		.hero-button { padding: 15px 21px; background: var(--ink); color: white; }
+		.hero-art { min-height: 390px; position: relative; display: grid; place-items: center; }
+		.art-frame { width: min(100%, 450px); aspect-ratio: 1 / 1.05; padding: 24px; background: var(--teal); transform: rotate(3deg); }
+		.art-inner { height: 100%; padding: 24px; background: var(--lime); display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-6deg); }
+		.art-word { font-family: "Space Grotesk", sans-serif; font-size: clamp(2.7rem, 6vw, 5rem); font-weight: 700; line-height: .88; }
+		.art-mark { align-self: flex-end; width: 80px; height: 80px; border: 12px solid var(--coral); border-radius: 50%; }
+		.art-caption { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+
+		.services { padding: 82px 0; background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 44px; }
+		h2 { margin: 0; font-size: clamp(2.1rem, 4vw, 3.7rem); }
+		.section-heading p { max-width: 300px; margin: 0; color: var(--muted); }
+		.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+		.service { min-height: 235px; padding: 28px; background: white; }
+		.service-number { color: var(--coral); font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+		.service h3 { margin: 54px 0 10px; font-family: "Space Grotesk", sans-serif; font-size: 1.3rem; }
+		.service p { margin: 0; color: var(--muted); font-size: .94rem; }
+
+		.contact { padding: 90px 0; background: var(--coral); }
+		.contact-content { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+		.contact h2 { max-width: 650px; }
+		.contact p { max-width: 300px; margin: 0; }
+		.contact-link { display: inline-block; margin-top: 25px; border-bottom: 2px solid var(--ink); font-weight: 700; }
+		footer { padding: 22px 0; background: var(--ink); color: #cbd3ce; font-size: .85rem; }
+		.footer-content { display: flex; justify-content: space-between; gap: 20px; }
+
+		@media (max-width: 760px) {
+			.wrap { width: min(var(--max-width), calc(100% - 32px)); }
+			.nav-links a:not(.nav-button) { display: none; }
+			.hero { padding: 60px 0 72px; }
+			.hero-grid { grid-template-columns: 1fr; gap: 45px; }
+			.hero-art { min-height: 300px; }
+			.art-frame { width: min(80vw, 360px); }
+			.section-heading, .contact-content { display: block; }
+			.section-heading p, .contact p { margin-top: 18px; }
+			.service-grid { grid-template-columns: 1fr; }
+			.service { min-height: 190px; }
+			.service h3 { margin-top: 35px; }
+			.footer-content { display: block; }
+			.footer-content span { display: block; margin-top: 7px; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="wrap">
+			<nav aria-label="Main navigation">
+				<a class="logo" href="#top">Northstar<span>•</span></a>
+				<div class="nav-links">
+					<a href="#services">What we do</a>
+					<a href="#contact">Contact</a>
+					<a class="nav-button" href="#contact">Start a project</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<main id="top">
+		<section class="hero">
+			<div class="wrap hero-grid">
+				<div>
+					<div class="eyebrow">Independent creative studio</div>
+					<h1>Ideas, made clear.</h1>
+					<p class="hero-copy">We help thoughtful people and ambitious small teams turn good ideas into work that matters.</p>
+					<a class="hero-button" href="#contact">Tell us what you’re building <span aria-hidden="true">&nbsp;↗</span></a>
+				</div>
+				<div class="hero-art" aria-label="Abstract graphic">
+					<div class="art-frame">
+						<div class="art-inner">
+							<div class="art-word">MAKE<br>ROOM.</div>
+							<div class="art-mark"></div>
+							<div class="art-caption">Strategy · Design · Direction</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="services" id="services">
+			<div class="wrap">
+				<div class="section-heading">
+					<h2>Small team.<br>Big attention.</h2>
+					<p>Focused collaboration from the first rough thought to the final polished detail.</p>
+				</div>
+				<div class="service-grid">
+					<article class="service"><div class="service-number">01</div><h3>Brand direction</h3><p>Find the clearest way to express what makes your work different.</p></article>
+					<article class="service"><div class="service-number">02</div><h3>Web experiences</h3><p>Build a useful, distinctive home for your ideas on the internet.</p></article>
+					<article class="service"><div class="service-number">03</div><h3>Creative partnership</h3><p>Bring an experienced perspective to the moments that matter most.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<section class="contact" id="contact">
+			<div class="wrap contact-content">
+				<h2>Have a good idea?<br>Let’s give it a place to go.</h2>
+				<div><p>For new projects, collaborations, or just a hello.</p><a class="contact-link" href="mailto:hello@yourdomain.com">hello@yourdomain.com ↗</a></div>
+			</div>
+		</section>
+	</main>
+
+	<footer><div class="wrap footer-content"><strong>Northstar Studio</strong><span>© 2026 · Made with intention</span></div></footer>
+</body>
+</html>
