@@ -1,7 +1,7 @@
 const MELON = 'https://www.melon.com/chart/index.htm';
 const NATE = 'https://news.nate.com/ent/idol24';
 const CHART_KEY = new Request('https://melon-cache.internal/current');
-const NEWS_KEY = new Request('https://nate-cache.internal/current');
+const NEWS_KEY = new Request('https://nate-cache.internal/v2/current');
 const ONE_HOUR = 60 * 60 * 1000;
 
 const clean = value => value.replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
@@ -96,7 +96,7 @@ function parseNews(html) {
     items.push({ title: decode(title), summary, source: decode(source) || 'NATE 연예', url, image: `https:${imageUrl}` });
     if (items.length >= 20) break;
   }
-  return items;
+  return items.sort((a, b) => Number(Boolean(b.summary)) - Number(Boolean(a.summary)));
 }
 
 async function refreshNews() {
@@ -105,9 +105,9 @@ async function refreshNews() {
   const html = new TextDecoder('euc-kr').decode(await upstream.arrayBuffer());
   const articles = parseNews(html);
   if (articles.length < 4) throw new Error(`네이트 뉴스 분석 오류 (${articles.length}건)`);
-  const translated = await Promise.all(articles.map(async article => {
+  const translated = await Promise.all(articles.map(async (article, id) => {
     const [titleMy, summaryMy] = await Promise.all([translate(article.title), translate(article.summary)]);
-    return { ...article, titleMy, summaryMy, image: `/api/news-image?url=${encodeURIComponent(article.image)}` };
+    return { ...article, id, titleMy, summaryMy, image: `/api/news-image?url=${encodeURIComponent(article.image)}` };
   }));
   const response = Response.json({ articles: translated, fetchedAt: new Date().toISOString(), source: NATE }, { headers: { 'Cache-Control': 'public,max-age=300,s-maxage=86400,stale-while-revalidate=86400' } });
   await caches.default.put(NEWS_KEY, response.clone());
