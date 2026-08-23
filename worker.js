@@ -1,7 +1,7 @@
 const MELON = 'https://www.melon.com/chart/index.htm';
 const NATE = 'https://news.nate.com/ent/idol24';
-const CHART_KEY = new Request('https://melon-cache.internal/current');
-const NEWS_KEY = new Request('https://nate-cache.internal/v2/current');
+const CHART_KEY = new Request('https://melon-cache.internal/v2/current');
+const NEWS_KEY = new Request('https://nate-cache.internal/v3/current');
 const ONE_HOUR = 60 * 60 * 1000;
 
 const clean = value => value.replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
@@ -25,10 +25,15 @@ function parse(html) {
 
 async function refreshChart() {
   const upstream = await fetch(MELON, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; KPopYangon/1.0)', Referer: 'https://www.melon.com/', 'Accept-Language': 'ko-KR,ko;q=0.9' } });
-  if (!upstream.ok) throw new Error(`멜론 응답 오류 (${upstream.status})`);
+  if (!upstream.ok) throw new Error(`Melon မှ တုံ့ပြန်မှု မရရှိပါ (${upstream.status})`);
   const data = parse(await upstream.text());
-  if (data.songs.length < 90) throw new Error(`멜론 차트 분석 오류 (${data.songs.length}곡)`);
-  data.songs = data.songs.map(song => ({ ...song, image: song.image ? `/api/melon-image?url=${encodeURIComponent(song.image)}` : '' }));
+  if (data.songs.length < 90) throw new Error(`သီချင်းစာရင်း မပြည့်စုံပါ (${data.songs.length})`);
+  const [titlesMy, artistsEn, albumsMy] = await Promise.all([
+    translateBatch(data.songs.map(song => song.title), 'my'),
+    translateBatch(data.songs.map(song => song.artist), 'en'),
+    translateBatch(data.songs.map(song => song.album), 'my')
+  ]);
+  data.songs = data.songs.map((song, index) => ({ ...song, title: titlesMy[index], artist: artistsEn[index], album: albumsMy[index], image: song.image ? `/api/melon-image?url=${encodeURIComponent(song.image)}` : '' }));
   const response = Response.json({ ...data, fetchedAt: new Date().toISOString() }, { headers: { 'Cache-Control': 'public,max-age=300,s-maxage=86400,stale-while-revalidate=86400' } });
   await caches.default.put(CHART_KEY, response.clone());
   return response;
@@ -67,15 +72,30 @@ async function image(request) {
 
 const decode = value => clean(value).replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code))).replace(/&hellip;/g, '…').replace(/&#124;/g, '|');
 
-async function translate(text) {
+async function translate(text, target = 'my') {
   if (!text) return '';
-  const endpoint = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=my&dt=t&q=${encodeURIComponent(text.slice(0, 700))}`;
+  const endpoint = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=${target}&dt=t&q=${encodeURIComponent(text.slice(0, 700))}`;
   try {
     const response = await fetch(endpoint);
     if (!response.ok) return text;
     const data = await response.json();
     return (data[0] || []).map(part => part[0] || '').join('').trim() || text;
   } catch { return text; }
+}
+
+async function translateBatch(values, target) {
+  const output = [...values];
+  const indexes = values.map((value, index) => /[가-힣]/.test(value) ? index : -1).filter(index => index >= 0);
+  const groups = [];
+  for (let index = 0; index < indexes.length; index += 10) groups.push(indexes.slice(index, index + 10));
+  await Promise.all(groups.map(async group => {
+    const separator = ' ZZZSEPARATORZZZ ';
+    const translated = await translate(group.map(index => values[index]).join(separator), target);
+    const parts = translated.split(/\s*ZZZSEPARATORZZZ\s*/i);
+    if (parts.length === group.length) group.forEach((sourceIndex, partIndex) => { output[sourceIndex] = parts[partIndex]; });
+    else await Promise.all(group.map(async sourceIndex => { output[sourceIndex] = await translate(values[sourceIndex], target); }));
+  }));
+  return output;
 }
 
 function parseNews(html) {
@@ -93,7 +113,7 @@ function parseNews(html) {
     const source = pick(block, /<(?:span|em)[^>]+class="(?:source|src)"[^>]*>([\s\S]*?)<\/(?:span|em)>/i);
     const textBlock = (block.match(/<span class="tb">([\s\S]*?)<\/span>/i) || [])[1] || '';
     const summary = decode(textBlock.replace(/<h2[^>]*>[\s\S]*?<\/h2>/i, '')).slice(0, 180);
-    items.push({ title: decode(title), summary, source: decode(source) || 'NATE 연예', url, image: `https:${imageUrl}` });
+    items.push({ title: decode(title), summary, source: decode(source) || 'NATE Entertainment', url, image: `https:${imageUrl}` });
     if (items.length >= 20) break;
   }
   return items.sort((a, b) => Number(Boolean(b.summary)) - Number(Boolean(a.summary)));
@@ -101,13 +121,13 @@ function parseNews(html) {
 
 async function refreshNews() {
   const upstream = await fetch(NATE, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; KPopYangon/1.0)', 'Accept-Language': 'ko-KR,ko;q=0.9' } });
-  if (!upstream.ok) throw new Error(`네이트 응답 오류 (${upstream.status})`);
+  if (!upstream.ok) throw new Error(`NATE မှ တုံ့ပြန်မှု မရရှိပါ (${upstream.status})`);
   const html = new TextDecoder('euc-kr').decode(await upstream.arrayBuffer());
   const articles = parseNews(html);
-  if (articles.length < 4) throw new Error(`네이트 뉴스 분석 오류 (${articles.length}건)`);
+  if (articles.length < 4) throw new Error(`သတင်းအချက်အလက် မပြည့်စုံပါ (${articles.length})`);
   const translated = await Promise.all(articles.map(async (article, id) => {
-    const [titleMy, summaryMy] = await Promise.all([translate(article.title), translate(article.summary)]);
-    return { ...article, id, titleMy, summaryMy, image: `/api/news-image?url=${encodeURIComponent(article.image)}` };
+    const [titleMy, summaryMy, sourceEn] = await Promise.all([translate(article.title), translate(article.summary), translate(article.source, 'en')]);
+    return { ...article, source: sourceEn, id, titleMy, summaryMy, image: `/api/news-image?url=${encodeURIComponent(article.image)}` };
   }));
   const response = Response.json({ articles: translated, fetchedAt: new Date().toISOString(), source: NATE }, { headers: { 'Cache-Control': 'public,max-age=300,s-maxage=86400,stale-while-revalidate=86400' } });
   await caches.default.put(NEWS_KEY, response.clone());
