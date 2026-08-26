@@ -19,7 +19,7 @@ document.querySelector('.copy-tracklist')?.addEventListener('click',async event=
   if(!target)return;
   const tracks=[...target.querySelectorAll('li h2')].map((track,index)=>`${String(index+1).padStart(2,'0')}. ${track.textContent.trim()}`).join('\n');
   try{
-    await navigator.clipboard.writeText(`KPOP YANGON — 양곤의 비 오는 밤\n\n${tracks}\n\nhttps://kpopyangon.com/posts/yangon-rainy-night.html`);
+    await navigator.clipboard.writeText(`KPOP YANGON — BiiiG부터 다시 듣는 빅뱅 추억 소환곡\n\n${tracks}\n\nhttps://kpopyangon.com/posts/bigbang-memory.html`);
     button.textContent='복사 완료 ✓';
     if(status)status.textContent='10곡의 제목과 아티스트를 클립보드에 복사했습니다.';
     setTimeout(()=>button.textContent='곡 목록 복사',2200);
