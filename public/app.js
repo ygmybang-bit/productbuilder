@@ -183,13 +183,13 @@ if(trackHeadings.length){
   });
   const serviceButtons=document.querySelector('.listen-panel .service-buttons');
   if(serviceButtons&&tracks.length){
-    const playlistLink=document.createElement('a');
-    playlistLink.className='service-button';
-    playlistLink.href=`https://www.youtube.com/watch_videos?video_ids=${tracks.map(track=>track.videoId).join(',')}`;
-    playlistLink.target='_blank';
-    playlistLink.rel='noopener';
-    playlistLink.textContent='YouTube에서 전체 목록 듣기 ↗';
-    serviceButtons.prepend(playlistLink);
+    const playlistButton=document.createElement('button');
+    playlistButton.className='service-button';
+    playlistButton.type='button';
+    playlistButton.textContent='사이트에서 전체 목록 듣기 ▶';
+    playlistButton.setAttribute('aria-label','첫 곡부터 전체 목록 연속 재생');
+    playlistButton.addEventListener('click',()=>play(0));
+    serviceButtons.prepend(playlistButton);
   }
   playerShell.querySelector('[data-player-close]').addEventListener('click',()=>{
     player?.stopVideo();
