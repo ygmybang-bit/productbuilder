@@ -30,6 +30,18 @@ document.querySelector('.copy-tracklist')?.addEventListener('click',async event=
 });
 
 const youtubeTracks={
+  'RESCENE — LOVE ATTACK':'9XttLI0oH0I',
+  'KiiiKiii — Pop Off Pop Off':'UsbRoaH6y-Q',
+  'Hearts2Hearts — Lemon Tang':'1VqxWNwgf5Q',
+  'Red Velvet — Surfin’ Boy':'Do9BOhk0u_w',
+  'KISS OF LIFE — SWEAT':'M0v-AeoIsTU',
+  'KATSEYE — Animal':'m7k9UMcHbr0',
+  'ARTMS — Born Stunner':'jyRuPP4q5g0',
+  'BABYMONSTER — SUGAR HONEY ICE TEA':'J3-oRJ606Jw',
+  'BABYMONSTER — MOON':'8cFKPrxrrJM',
+  'OURBIRTHDAY — Our Birthday':'Kw2gmCOgR0c',
+  '정은지 — I Love LOVE':'IfYKJSTCTI0',
+  'Hearts2Hearts — RUDE!':'F7sGJVUrkjQ',
   'FTISLAND — 눈물이 더 가까운 사람':'JKuuo7OT18A',
   'DAY6 — Zombie':'k8gx-C7GCGU',
   'QWER — 눈물참기':'pifz9JH1Re8',
