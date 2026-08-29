@@ -222,14 +222,34 @@ if(trackHeadings.length){
     })();
     return playerReady;
   };
+  const playEmbeddedPlaylist=index=>{
+    setActiveTrack(index);
+    nowPlaying.textContent=`${tracks[index].title}부터 연속 재생`;
+    const iframe=document.createElement('iframe');
+    const params=new URLSearchParams({
+      list:youtubePlaylistId,
+      index:String(index),
+      autoplay:'1',
+      playsinline:'1',
+      rel:'0',
+      origin:window.location.origin,
+      widget_referrer:window.location.href
+    });
+    iframe.src=`https://www.youtube.com/embed/videoseries?${params}`;
+    iframe.title=`${tracks[index].title}부터 재생하는 YouTube 플레이리스트`;
+    iframe.allow='autoplay; encrypted-media; picture-in-picture';
+    iframe.referrerPolicy='strict-origin-when-cross-origin';
+    iframe.allowFullscreen=true;
+    playerElement.replaceChildren(iframe);
+  };
   const play=async index=>{
+    if(youtubePlaylistId){
+      playEmbeddedPlaylist(index);
+      return;
+    }
     setActiveTrack(index);
     await ensurePlayer();
-    if(youtubePlaylistId){
-      player.loadPlaylist({list:youtubePlaylistId,listType:'playlist',index,startSeconds:0});
-    }else{
-      player.loadVideoById(tracks[index].videoId);
-    }
+    player.loadVideoById(tracks[index].videoId);
   };
   trackHeadings.forEach(heading=>{
     const title=heading.textContent.trim();
@@ -268,6 +288,7 @@ if(trackHeadings.length){
   }
   playerShell.querySelector('[data-player-close]').addEventListener('click',()=>{
     player?.stopVideo();
+    playerElement.replaceChildren();
     playerShell.hidden=true;
     currentIndex=-1;
     document.querySelectorAll('.track-play.is-playing').forEach(item=>item.classList.remove('is-playing'));
