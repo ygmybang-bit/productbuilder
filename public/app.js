@@ -66,7 +66,7 @@ const youtubeTracks={
   'BIGBANG — FANTASTIC BABY':'AAbokV76tkU',
   'BIGBANG — BANG BANG BANG':'2ips2mM7Zqw',
   'BIGBANG — 거짓말':'2Cv3phvP8Ro',
-  'BIGBANG — 하루 하루':'mzCbEdtNbJ0',
+  'BIGBANG — 하루 하루':'MzCbEdtNbJ0',
   'BIGBANG — BLUE':'2GRP1rkE4O0',
   'BIGBANG — BAD BOY':'1qnV55LUFVM',
   'BIGBANG — LOSER':'1CTced9CMMk',
@@ -134,6 +134,20 @@ if(trackHeadings.length){
     currentIndex=index;
     playerShell.hidden=false;
   };
+  const playNextTrack=(afterError=false)=>{
+    const nextIndex=currentIndex+1;
+    if(nextIndex>=tracks.length){
+      progress.textContent=afterError
+        ?'이 영상은 현재 재생할 수 없습니다 · 공식 YouTube 링크를 확인해 주세요'
+        :'플레이리스트 재생이 끝났습니다';
+      return;
+    }
+    if(afterError)progress.textContent='현재 영상을 재생할 수 없어 다음 곡으로 이동합니다';
+    setTimeout(()=>{
+      setActiveTrack(nextIndex);
+      player.loadVideoById(tracks[nextIndex].videoId);
+    },afterError?500:0);
+  };
   const ensurePlayer=async()=>{
     if(playerReady)return playerReady;
     playerReady=(async()=>{
@@ -148,11 +162,10 @@ if(trackHeadings.length){
             onReady:resolve,
             onStateChange:event=>{
               if(event.data===YT.PlayerState.ENDED&&currentIndex<tracks.length-1){
-                const nextIndex=currentIndex+1;
-                setActiveTrack(nextIndex);
-                player.loadVideoById(tracks[nextIndex].videoId);
+                playNextTrack();
               }
-            }
+            },
+            onError:()=>playNextTrack(true)
           }
         });
       });
