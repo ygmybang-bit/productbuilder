@@ -113,13 +113,15 @@ if(trackHeadings.length){
   playerShell.className='youtube-player-shell';
   playerShell.hidden=true;
   playerShell.setAttribute('aria-label','YouTube 음악 플레이어');
-  playerShell.innerHTML='<div class="youtube-player-head"><div><span>OFFICIAL VIDEO · YOUTUBE</span><strong data-player-title>곡을 선택해 주세요</strong><small data-player-progress></small></div><button type="button" data-player-close aria-label="플레이어 닫기">×</button></div><div class="youtube-player-frame"><div data-youtube-player></div></div>';
+  playerShell.innerHTML='<div class="youtube-player-head"><div><span>OFFICIAL VIDEO · YOUTUBE</span><strong data-player-title>곡을 선택해 주세요</strong><small data-player-progress></small><a data-player-youtube-link href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube 앱에서 이 곡 듣기</a></div><button type="button" data-player-close aria-label="플레이어 닫기">×</button></div><div class="youtube-player-frame"><div data-youtube-player></div></div>';
   document.body.append(playerShell);
   const playerElement=playerShell.querySelector('[data-youtube-player]');
   const nowPlaying=playerShell.querySelector('[data-player-title]');
   const progress=playerShell.querySelector('[data-player-progress]');
+  const playerYouTubeLink=playerShell.querySelector('[data-player-youtube-link]');
   let player;
   let currentIndex=-1;
+  let currentTrackHasPlayed=false;
   let playerReady;
   const loadYouTubeApi=()=>{
     if(window.YT?.Player)return Promise.resolve();
@@ -141,8 +143,10 @@ if(trackHeadings.length){
     const track=tracks[index];
     track.button?.classList.add('is-playing');
     nowPlaying.textContent=track.title;
+    playerYouTubeLink.href=`https://www.youtube.com/watch?v=${track.videoId}`;
     progress.textContent=`${index+1} / ${tracks.length} · 종료 후 다음 곡 자동 재생`;
     currentIndex=index;
+    currentTrackHasPlayed=false;
     playerShell.hidden=false;
   };
   const playNextTrack=(afterError=false)=>{
@@ -159,6 +163,16 @@ if(trackHeadings.length){
       player.loadVideoById(tracks[nextIndex].videoId);
     },afterError?500:0);
   };
+  const handlePlayerError=event=>{
+    const errorCode=event.data;
+    if([100,101,150].includes(errorCode)){
+      playNextTrack(true);
+      return;
+    }
+    progress.textContent=errorCode===153
+      ?'YouTube가 재생 요청을 확인하지 못했습니다 · 아래 링크로 YouTube에서 들어주세요'
+      :'YouTube에서 사용자 확인이 필요할 수 있습니다 · 아래 링크로 YouTube에서 들어주세요';
+  };
   const ensurePlayer=async()=>{
     if(playerReady)return playerReady;
     playerReady=(async()=>{
@@ -168,15 +182,24 @@ if(trackHeadings.length){
           width:'100%',
           height:'100%',
           host:'https://www.youtube-nocookie.com',
-          playerVars:{autoplay:1,playsinline:1,rel:0},
+          playerVars:{
+            autoplay:1,
+            playsinline:1,
+            rel:0,
+            origin:window.location.origin,
+            widget_referrer:window.location.href
+          },
           events:{
             onReady:resolve,
             onStateChange:event=>{
-              if(event.data===YT.PlayerState.ENDED&&currentIndex<tracks.length-1){
+              if(event.data===YT.PlayerState.PLAYING){
+                currentTrackHasPlayed=true;
+              }
+              if(event.data===YT.PlayerState.ENDED&&currentTrackHasPlayed&&currentIndex<tracks.length-1){
                 playNextTrack();
               }
             },
-            onError:()=>playNextTrack(true)
+            onError:handlePlayerError
           }
         });
       });
