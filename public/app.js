@@ -30,6 +30,17 @@ document.querySelector('.copy-tracklist')?.addEventListener('click',async event=
 });
 
 const youtubeTracks={
+  'BTS — 쩔어':'BVwAVbKYYeM',
+  'BTS — 불타오르네':'4ujQOR2DMFM',
+  'BTS — Not Today':'9DwzBICPhdM',
+  'BTS — MIC Drop (Steve Aoki Remix)':'kTlv5_Bs8aw',
+  'BTS — ON':'mPVDGOVjRQ0',
+  'BTS — DNA':'MBdVXkSdhwU',
+  'BTS — IDOL':'pBuZEGYXA6E',
+  'BTS — 작은 것들을 위한 시 (Boy With Luv)':'XsX3ATc3FbA',
+  'BTS — Dynamite':'gdZLi9oWNZg',
+  'BTS — Butter':'WMweEpGlu_U',
+  'BTS — Permission to Dance':'CuklIb9d3fI',
   '아이유 — 밤편지':'BzYnNdJhZQw',
   'NewJeans — Hurt':'tVIXY14aJms',
   '태연 — 11:11':'ulr0muQKjk0',
