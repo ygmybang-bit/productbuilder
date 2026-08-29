@@ -181,7 +181,7 @@ if(trackHeadings.length){
         player=new YT.Player(playerElement,{
           width:'100%',
           height:'100%',
-          host:'https://www.youtube-nocookie.com',
+          host:'https://www.youtube.com',
           playerVars:{
             autoplay:1,
             playsinline:1,
