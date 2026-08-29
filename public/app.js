@@ -209,7 +209,41 @@ if(trackHeadings.length){
 
 const playlistSlider=document.querySelector('[data-playlist-slider]');
 if(playlistSlider){
-  const cards=[...playlistSlider.children];
+  const allCards=[...playlistSlider.querySelectorAll('.playlist-feature')]
+    .sort((a,b)=>(b.dataset.published||'').localeCompare(a.dataset.published||''));
+  allCards.forEach(card=>playlistSlider.append(card));
+  allCards.slice(3).forEach(card=>card.remove());
+  const cards=allCards.slice(0,3);
+  const latest=cards[0];
+  if(latest){
+    const playlistLabel=latest.querySelector('.playlist-cover > span')?.textContent.match(/PLAYLIST\s+\d+/)?.[0];
+    const trackCount=latest.querySelector('.playlist-cover small')?.textContent.match(/\d+(?=\s*TRACKS)/)?.[0];
+    const duration=latest.querySelector('.playlist-summary > p')?.textContent.match(/약\s*\d+분/)?.[0];
+    const category=latest.querySelector('.category')?.textContent.replace(/^NEW\s*·\s*/,'');
+    const title=latest.querySelector('.playlist-summary h3')?.textContent.trim();
+    const heroMeta=[...document.querySelectorAll('.hero-meta span')];
+    if(playlistLabel&&heroMeta[0])heroMeta[0].textContent=playlistLabel;
+    if(trackCount&&duration&&heroMeta[1])heroMeta[1].textContent=`${trackCount}곡 · ${duration}`;
+    if(category&&heroMeta[2])heroMeta[2].textContent=category;
+    const playNow=document.querySelector('.hero-side .side-block');
+    if(playNow){
+      playNow.href=latest.getAttribute('href');
+      const number=playNow.querySelector('.side-number');
+      const description=playNow.querySelector('p');
+      if(number&&trackCount)number.textContent=trackCount.padStart(2,'0');
+      if(description&&title)description.textContent=`${title} →`;
+    }
+    const flowNumber=document.querySelector('.hero-side .side-block:nth-child(2) .side-number');
+    if(flowNumber&&trackCount)flowNumber.textContent=`01—${trackCount.padStart(2,'0')}`;
+  }
+  const dotsContainer=document.querySelector('.slider-dots');
+  if(dotsContainer){
+    dotsContainer.replaceChildren(...cards.map((_,index)=>{
+      const dot=document.createElement('span');
+      dot.classList.toggle('active',index===0);
+      return dot;
+    }));
+  }
   const dots=[...document.querySelectorAll('.slider-dots span')];
   const move=direction=>playlistSlider.scrollBy({left:direction*playlistSlider.clientWidth,behavior:'smooth'});
   document.querySelector('[data-slider-prev]')?.addEventListener('click',()=>move(-1));
