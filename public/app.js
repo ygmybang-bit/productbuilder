@@ -30,6 +30,14 @@ document.querySelector('.copy-tracklist')?.addEventListener('click',async event=
 });
 
 const youtubeTracks={
+  '아이유 — 밤편지':'BzYnNdJhZQw',
+  'NewJeans — Hurt':'tVIXY14aJms',
+  '태연 — 11:11':'ulr0muQKjk0',
+  'Colde — 와르르♥':'M9tsm6S9v1g',
+  'offonoff — 춤':'zt0Me5qyK4g',
+  '헤이즈 — 비도 오고 그래서':'afxLaQiLu-o',
+  '아이유 — 무릎':'SfeaTW4bcAw',
+  'AKMU — 어떻게 이별까지 사랑하겠어, 널 사랑하는 거지':'m3DZsBw5bnE',
   'RESCENE — LOVE ATTACK':'9XttLI0oH0I',
   'KiiiKiii — Pop Off Pop Off':'UsbRoaH6y-Q',
   'Hearts2Hearts — Lemon Tang':'1VqxWNwgf5Q',
