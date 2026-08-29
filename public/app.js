@@ -207,6 +207,18 @@ if(trackHeadings.length){
   });
 }
 
+const heroTopList=document.querySelector('.hero-top-list');
+if(heroTopList){
+  const latestLinks=[...heroTopList.querySelectorAll('li')]
+    .sort((a,b)=>(b.querySelector('a')?.dataset.published||'').localeCompare(a.querySelector('a')?.dataset.published||''));
+  latestLinks.forEach((item,index)=>{
+    if(index>=5)return item.remove();
+    const number=item.querySelector('span');
+    if(number)number.textContent=String(index+1).padStart(2,'0');
+    heroTopList.append(item);
+  });
+}
+
 const playlistSlider=document.querySelector('[data-playlist-slider]');
 if(playlistSlider){
   const allCards=[...playlistSlider.querySelectorAll('.playlist-feature')]
