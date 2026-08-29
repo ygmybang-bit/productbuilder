@@ -101,6 +101,15 @@ const youtubeTracks={
   '로꼬, 유주 — 우연히 봄':'VjYO5fdmWhk'
 };
 
+const youtubePlaylistByPost={
+  '/posts/bigbang-memory':'PLSoKd3JQJZkU',
+  '/posts/family-comfort-band':'PLZ7TaqakNCQM',
+  '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
+  '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
+  '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
+  '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w'
+};
+
 const trackHeadings=[...document.querySelectorAll('.tracklist li h2')];
 if(trackHeadings.length){
   const tracks=trackHeadings.map(heading=>({
@@ -109,10 +118,8 @@ if(trackHeadings.length){
     videoId:youtubeTracks[heading.textContent.trim()],
     button:null
   })).filter(track=>track.videoId);
-  const useExternalYouTubePlayback=window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
-  const openInYouTube=videoId=>{
-    window.location.href=`https://www.youtube.com/watch?v=${videoId}`;
-  };
+  const postPath=window.location.pathname.replace(/\.html$/,'').replace(/\/$/,'');
+  const youtubePlaylistId=youtubePlaylistByPost[postPath];
   const playerShell=document.createElement('section');
   playerShell.className='youtube-player-shell';
   playerShell.hidden=true;
@@ -164,7 +171,8 @@ if(trackHeadings.length){
     if(afterError)progress.textContent='현재 영상을 재생할 수 없어 다음 곡으로 이동합니다';
     setTimeout(()=>{
       setActiveTrack(nextIndex);
-      player.loadVideoById(tracks[nextIndex].videoId);
+      if(youtubePlaylistId)player.nextVideo();
+      else player.loadVideoById(tracks[nextIndex].videoId);
     },afterError?500:0);
   };
   const handlePlayerError=event=>{
@@ -198,8 +206,12 @@ if(trackHeadings.length){
             onStateChange:event=>{
               if(event.data===YT.PlayerState.PLAYING){
                 currentTrackHasPlayed=true;
+                const playlistIndex=player.getPlaylistIndex?.();
+                if(youtubePlaylistId&&playlistIndex>=0&&playlistIndex<tracks.length&&playlistIndex!==currentIndex){
+                  setActiveTrack(playlistIndex);
+                }
               }
-              if(event.data===YT.PlayerState.ENDED&&currentTrackHasPlayed&&currentIndex<tracks.length-1){
+              if(!youtubePlaylistId&&event.data===YT.PlayerState.ENDED&&currentTrackHasPlayed&&currentIndex<tracks.length-1){
                 playNextTrack();
               }
             },
@@ -213,7 +225,11 @@ if(trackHeadings.length){
   const play=async index=>{
     setActiveTrack(index);
     await ensurePlayer();
-    player.loadVideoById(tracks[index].videoId);
+    if(youtubePlaylistId){
+      player.loadPlaylist({list:youtubePlaylistId,listType:'playlist',index,startSeconds:0});
+    }else{
+      player.loadVideoById(tracks[index].videoId);
+    }
   };
   trackHeadings.forEach(heading=>{
     const title=heading.textContent.trim();
@@ -224,19 +240,11 @@ if(trackHeadings.length){
       const button=document.createElement('button');
       button.className='track-play';
       button.type='button';
-      button.innerHTML=useExternalYouTubePlayback
-        ?'<span aria-hidden="true">▶</span> YouTube 앱에서 듣기'
-        :'<span aria-hidden="true">▶</span> 여기서 듣기';
-      button.setAttribute('aria-label',useExternalYouTubePlayback?`${title} YouTube에서 듣기`:`${title} 여기서 듣기`);
+      button.innerHTML='<span aria-hidden="true">▶</span> 여기서 듣기';
+      button.setAttribute('aria-label',`${title} 여기서 듣기`);
       const index=tracks.findIndex(track=>track.heading===heading);
       tracks[index].button=button;
-      button.addEventListener('click',()=>{
-        if(useExternalYouTubePlayback){
-          openInYouTube(videoId);
-          return;
-        }
-        play(index);
-      });
+      button.addEventListener('click',()=>play(index));
       actions.append(button);
     }
     const link=document.createElement('a');
@@ -253,15 +261,9 @@ if(trackHeadings.length){
     const playlistButton=document.createElement('button');
     playlistButton.className='service-button';
     playlistButton.type='button';
-    playlistButton.textContent=useExternalYouTubePlayback?'YouTube에서 전체 목록 듣기 ▶':'사이트에서 전체 목록 듣기 ▶';
+    playlistButton.textContent='사이트에서 전체 목록 듣기 ▶';
     playlistButton.setAttribute('aria-label','첫 곡부터 전체 목록 연속 재생');
-    playlistButton.addEventListener('click',()=>{
-      if(useExternalYouTubePlayback){
-        window.location.href=`https://www.youtube.com/watch_videos?video_ids=${tracks.map(track=>track.videoId).join(',')}`;
-        return;
-      }
-      play(0);
-    });
+    playlistButton.addEventListener('click',()=>play(0));
     serviceButtons.prepend(playlistButton);
   }
   playerShell.querySelector('[data-player-close]').addEventListener('click',()=>{
