@@ -109,6 +109,10 @@ if(trackHeadings.length){
     videoId:youtubeTracks[heading.textContent.trim()],
     button:null
   })).filter(track=>track.videoId);
+  const useExternalYouTubePlayback=window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
+  const openInYouTube=videoId=>{
+    window.location.href=`https://www.youtube.com/watch?v=${videoId}`;
+  };
   const playerShell=document.createElement('section');
   playerShell.className='youtube-player-shell';
   playerShell.hidden=true;
@@ -220,11 +224,19 @@ if(trackHeadings.length){
       const button=document.createElement('button');
       button.className='track-play';
       button.type='button';
-      button.innerHTML='<span aria-hidden="true">▶</span> 여기서 듣기';
-      button.setAttribute('aria-label',`${title} 여기서 듣기`);
+      button.innerHTML=useExternalYouTubePlayback
+        ?'<span aria-hidden="true">▶</span> YouTube 앱에서 듣기'
+        :'<span aria-hidden="true">▶</span> 여기서 듣기';
+      button.setAttribute('aria-label',useExternalYouTubePlayback?`${title} YouTube에서 듣기`:`${title} 여기서 듣기`);
       const index=tracks.findIndex(track=>track.heading===heading);
       tracks[index].button=button;
-      button.addEventListener('click',()=>play(index));
+      button.addEventListener('click',()=>{
+        if(useExternalYouTubePlayback){
+          openInYouTube(videoId);
+          return;
+        }
+        play(index);
+      });
       actions.append(button);
     }
     const link=document.createElement('a');
@@ -241,9 +253,15 @@ if(trackHeadings.length){
     const playlistButton=document.createElement('button');
     playlistButton.className='service-button';
     playlistButton.type='button';
-    playlistButton.textContent='사이트에서 전체 목록 듣기 ▶';
+    playlistButton.textContent=useExternalYouTubePlayback?'YouTube에서 전체 목록 듣기 ▶':'사이트에서 전체 목록 듣기 ▶';
     playlistButton.setAttribute('aria-label','첫 곡부터 전체 목록 연속 재생');
-    playlistButton.addEventListener('click',()=>play(0));
+    playlistButton.addEventListener('click',()=>{
+      if(useExternalYouTubePlayback){
+        window.location.href=`https://www.youtube.com/watch_videos?video_ids=${tracks.map(track=>track.videoId).join(',')}`;
+        return;
+      }
+      play(0);
+    });
     serviceButtons.prepend(playlistButton);
   }
   playerShell.querySelector('[data-player-close]').addEventListener('click',()=>{
