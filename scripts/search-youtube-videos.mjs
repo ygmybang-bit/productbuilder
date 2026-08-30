@@ -16,6 +16,24 @@ const tokenResponse=await fetch('https://oauth2.googleapis.com/token',{
 const token=await tokenResponse.json();
 if(!tokenResponse.ok)throw new Error(token.error_description||token.error);
 
+if(process.argv[2]==='--playlist'){
+  const playlistId=process.argv[3];
+  const playlistUrl=new URL('https://www.googleapis.com/youtube/v3/playlists');
+  playlistUrl.search=new URLSearchParams({part:'snippet,status,contentDetails',id:playlistId});
+  const playlistResponse=await fetch(playlistUrl,{headers:{authorization:`Bearer ${token.access_token}`}});
+  const playlistData=await playlistResponse.json();
+  if(!playlistResponse.ok)throw new Error(playlistData.error?.message||playlistResponse.statusText);
+  console.log(JSON.stringify(playlistData.items||[],null,2));
+  const itemsUrl=new URL('https://www.googleapis.com/youtube/v3/playlistItems');
+  itemsUrl.search=new URLSearchParams({part:'snippet,status',playlistId,maxResults:'50'});
+  const itemsResponse=await fetch(itemsUrl,{headers:{authorization:`Bearer ${token.access_token}`}});
+  const itemsData=await itemsResponse.json();
+  if(!itemsResponse.ok)throw new Error(itemsData.error?.message||itemsResponse.statusText);
+  console.log(`ITEMS=${itemsData.items?.length||0}`);
+  for(const item of itemsData.items||[])console.log(`${item.snippet?.resourceId?.videoId}\t${item.status?.privacyStatus}\t${item.snippet?.title}`);
+  process.exit(0);
+}
+
 for(const query of process.argv.slice(2)){
   const url=new URL('https://www.googleapis.com/youtube/v3/search');
   url.search=new URLSearchParams({part:'snippet',type:'video',maxResults:'5',q:query});

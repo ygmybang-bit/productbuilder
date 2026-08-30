@@ -121,7 +121,7 @@ const youtubePlaylistByPost={
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
-  '/posts/sunday-factory-staff-picks':'PLL_pdjD44jYSY',
+  '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w'
 };
 
