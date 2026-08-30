@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "youtube:playlists": "node scripts/create-youtube-playlists.mjs"
+    "youtube:playlists": "node scripts/create-youtube-playlists.mjs",
+    "youtube:search": "node scripts/search-youtube-videos.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"

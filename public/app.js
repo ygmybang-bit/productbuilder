@@ -30,6 +30,20 @@ document.querySelector('.copy-tracklist')?.addEventListener('click',async event=
 });
 
 const youtubeTracks={
+  'TWICE — YES or YES':'mAKsZ26SabQ',
+  '아이유 — Celebrity':'0-q1KafFCLU',
+  'iKON — LOVE SCENARIO':'vecSVX1QYbQ',
+  '소녀시대 — Kissing You':'r3yxxe66LXs',
+  'EXO — Lucky':'lsrVF1J4emc',
+  'EXO — Don’t Go':'9nkIxVcBHCQ',
+  'iKON — BEST FRIEND':'VF28zFvAIEY',
+  'CHEN & Punch — Everytime':'M-GWPTUfpWI',
+  'Crush — Beautiful':'W0cs6ciCt_k',
+  'MAMAMOO — 별이 빛나는 밤 (Starry Night)':'LjUXm0Zy_dk',
+  'T-ARA — DAY BY DAY':'brnCe8lL7l4',
+  'TAEYANG — I Need a Girl':'nWq4evFjYrU',
+  'SUPER JUNIOR — SORRY, SORRY':'x6QA3m58DQw',
+  'Ailee — 보여줄게 (I Will Show You)':'MCEcWcIww5k',
   'BTS — 쩔어':'BVwAVbKYYeM',
   'BTS — 불타오르네':'4ujQOR2DMFM',
   'BTS — Not Today':'9DwzBICPhdM',
@@ -107,6 +121,7 @@ const youtubePlaylistByPost={
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
+  '/posts/sunday-factory-staff-picks':'PLL_pdjD44jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w'
 };
 
