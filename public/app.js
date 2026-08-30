@@ -12,7 +12,9 @@ menu?.addEventListener('click',()=>{
   menu.setAttribute('aria-expanded',String(open));
 });
 
-document.querySelector('.copy-tracklist')?.addEventListener('click',async event=>{
+const copyTracklistButton=document.querySelector('.copy-tracklist');
+if(copyTracklistButton)copyTracklistButton.textContent='곡 목록 복사 · Copy Tracklist';
+copyTracklistButton?.addEventListener('click',async event=>{
   const button=event.currentTarget;
   const target=document.querySelector(button.dataset.copyTarget);
   const status=document.querySelector('.copy-status');
@@ -23,7 +25,7 @@ document.querySelector('.copy-tracklist')?.addEventListener('click',async event=
     await navigator.clipboard.writeText(`KPOP YANGON — ${title}\n\n${tracks}\n\n${location.href}`);
     button.textContent='복사 완료 ✓';
     if(status)status.textContent=`${tracks.split('\n').length}곡의 제목과 아티스트를 클립보드에 복사했습니다.`;
-    setTimeout(()=>button.textContent='곡 목록 복사',2200);
+    setTimeout(()=>button.textContent='곡 목록 복사 · Copy Tracklist',2200);
   }catch{
     if(status)status.textContent='브라우저에서 자동 복사를 허용하지 않았습니다. 아래 트랙 목록을 직접 선택해 주세요.';
   }
@@ -250,7 +252,7 @@ if(trackHeadings.length){
       origin:window.location.origin,
       widget_referrer:window.location.href
     });
-    iframe.src=`https://www.youtube.com/embed/videoseries?${params}`;
+    iframe.src=`https://www.youtube.com/embed/${tracks[index].videoId}?${params}`;
     iframe.title=`${tracks[index].title}부터 재생하는 YouTube 플레이리스트`;
     iframe.allow='autoplay; encrypted-media; picture-in-picture';
     iframe.referrerPolicy='strict-origin-when-cross-origin';
@@ -296,7 +298,7 @@ if(trackHeadings.length){
     const playlistButton=document.createElement('button');
     playlistButton.className='service-button';
     playlistButton.type='button';
-    playlistButton.textContent='사이트에서 전체 목록 듣기 ▶';
+    playlistButton.textContent='사이트에서 전체 목록 듣기 · Play Full Playlist ▶';
     playlistButton.setAttribute('aria-label','첫 곡부터 전체 목록 연속 재생');
     playlistButton.addEventListener('click',()=>play(0));
     serviceButtons.prepend(playlistButton);
