@@ -114,13 +114,27 @@ const youtubeTracks={
   '창모 — METEOR':'lOrU0MH0bMk',
   '미란이, 먼치맨, Khundi Panda, 머쉬베놈 — VVS':'hq9hcJIzB6w',
   '에픽하이 — Fly':'fGxlhEp4pao',
-  '로꼬, 유주 — 우연히 봄':'VjYO5fdmWhk'
+  '로꼬, 유주 — 우연히 봄':'VjYO5fdmWhk',
+  'GOT7 — Just Right':'vrdk3IGcau8',
+  'D.O. — 별 떨어진다 (I Do)':'5vmJ_wq2NeA',
+  '서인국 & 정은지 — All For You':'Q_GyneFGQ74',
+  'SEVENTEEN — 여전히 아름다운지':'ck538udT0b8',
+  'AKMU — 기쁨, 슬픔, 아름다운 마음':'SNn_H_Q2moo',
+  'TREASURE — BETTER THAN ME':'e5llkCmysGY',
+  '태연 — 만찬가':'VVO05mYGFY8',
+  '성시경 — 너에게':'_kr3bOs5s8U',
+  '성시경 — 제주도의 푸른 밤':'MBhm3xG3z-o',
+  '성시경 — 사랑하기 때문에':'pwqD5CmYKZE',
+  '성시경 — 좋니':'qVbzntniUwE',
+  '버즈 — 남자를 몰라':'4HpJXXt2l34',
+  'ALD1 LEO — Slow Motion (Karina Pasian Cover)':'PoFnhTHLjsI',
 };
 
 const youtubePlaylistByPost={
   '/posts/bigbang-memory':'PLSoKd3JQJZkU',
   '/posts/family-comfort-band':'PLZ7TaqakNCQM',
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
+  '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',

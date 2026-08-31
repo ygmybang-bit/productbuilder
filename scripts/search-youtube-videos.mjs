@@ -34,6 +34,17 @@ if(process.argv[2]==='--playlist'){
   process.exit(0);
 }
 
+if(process.argv[2]==='--video'){
+  const videoId=process.argv[3];
+  const videoUrl=new URL('https://www.googleapis.com/youtube/v3/videos');
+  videoUrl.search=new URLSearchParams({part:'snippet,status,contentDetails',id:videoId});
+  const videoResponse=await fetch(videoUrl,{headers:{authorization:`Bearer ${token.access_token}`}});
+  const videoData=await videoResponse.json();
+  if(!videoResponse.ok)throw new Error(videoData.error?.message||videoResponse.statusText);
+  console.log(JSON.stringify(videoData.items||[],null,2));
+  process.exit(0);
+}
+
 for(const query of process.argv.slice(2)){
   const url=new URL('https://www.googleapis.com/youtube/v3/search');
   url.search=new URLSearchParams({part:'snippet',type:'video',maxResults:'5',q:query});
