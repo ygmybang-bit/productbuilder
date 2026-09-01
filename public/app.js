@@ -12,6 +12,13 @@ menu?.addEventListener('click',()=>{
   menu.setAttribute('aria-expanded',String(open));
 });
 
+if(!document.querySelector('.site-footer')&&!document.querySelector('meta[name="robots"][content*="noindex"]')){
+  const footer=document.createElement('footer');
+  footer.className='site-footer';
+  footer.innerHTML='<div class="wrap"><div class="footer-grid"><div><a class="brand" href="/"><span class="brand-mark">K</span><span>KPOP YANGON</span></a><p>양곤의 실제 하루와 감정에 맞춰 직접 선곡하는 독립 K-pop 플레이리스트 저널.</p></div><div class="footer-col"><strong>콘텐츠</strong><a href="/archive">전체 플레이리스트</a><a href="/editorial">선곡 원칙</a></div><div class="footer-col"><strong>사이트</strong><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></div></div><div class="footer-bottom"><span>© 2026 KPOP YANGON.</span><span>Curated in Yangon</span></div></div>';
+  document.body.append(footer);
+}
+
 const copyTracklistButton=document.querySelector('.copy-tracklist');
 if(copyTracklistButton)copyTracklistButton.textContent='곡 목록 복사 · Copy Tracklist';
 copyTracklistButton?.addEventListener('click',async event=>{
