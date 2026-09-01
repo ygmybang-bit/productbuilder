@@ -128,6 +128,13 @@ const youtubeTracks={
   '성시경 — 좋니':'qVbzntniUwE',
   '버즈 — 남자를 몰라':'4HpJXXt2l34',
   'ALD1 LEO — Slow Motion (Karina Pasian Cover)':'PoFnhTHLjsI',
+  'Heize — 비도 오고 그래서 (Feat. 신용재)':'afxLaQiLu-o',
+  'WENDY — When This Rain Stops':'tknKZe_TyqU',
+  'D.O. — 괜찮아도 괜찮아 (That’s okay)':'j2aQ_NqeTNw',
+  'LEE HI — 한숨 (BREATHE)':'5iSlfF8TQ9k',
+  'BOL4 — 나의 사춘기에게':'yH2avtBbG6Y',
+  'Paul Kim — 모든 날, 모든 순간':'64uidOIH2vY',
+  'BTS — 봄날 (Spring Day)':'xEeFrLSkMm8',
 };
 
 const youtubePlaylistByPost={
@@ -138,7 +145,8 @@ const youtubePlaylistByPost={
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
-  '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w'
+  '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
+  '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg'
 };
 
 const trackHeadings=[...document.querySelectorAll('.tracklist li h2')];
