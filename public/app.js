@@ -142,6 +142,13 @@ const youtubeTracks={
   'BOL4 — 나의 사춘기에게':'yH2avtBbG6Y',
   'Paul Kim — 모든 날, 모든 순간':'64uidOIH2vY',
   'BTS — 봄날 (Spring Day)':'xEeFrLSkMm8',
+  '로이킴 — 왜 몰랐을까 (아는 와이프 OST)':'x7zTXv3SjmM',
+  '아이유 — Love poem':'OcVmaIlHZ1o',
+  '태연 — 내게 들려주고 싶은 말 (Dear Me)':'bho0m505qVA',
+  '옥상달빛 — 수고했어, 오늘도':'U3e4AOd-DzE',
+  'SEVENTEEN — 돌고 돌아 (Circles)':'DgAAaV6xfrk',
+  '윤하 — 사건의 지평선':'BBdC1rl5sKY',
+  '소녀시대 — 다시 만난 세계':'0k2Zzkw_-0I',
 };
 
 const youtubePlaylistByPost={
@@ -153,7 +160,8 @@ const youtubePlaylistByPost={
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
-  '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg'
+  '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
+  '/posts/wednesday-mom-healing':'PLID6mtfwwfIM'
 };
 
 const trackHeadings=[...document.querySelectorAll('.tracklist li h2')];
