@@ -149,6 +149,17 @@ const youtubeTracks={
   'SEVENTEEN — 돌고 돌아 (Circles)':'DgAAaV6xfrk',
   '윤하 — 사건의 지평선':'BBdC1rl5sKY',
   '소녀시대 — 다시 만난 세계':'0k2Zzkw_-0I',
+  'I.O.I — 갑자기 (Suddenly)':'gmjZf_Nxlec',
+  'CORTIS — REDRED':'U6BDbXIah-Y',
+  'aespa — LEMONADE':'83C3TZ4Zm_o',
+  'ATEEZ — BAD':'-q_S27LbNKU',
+  'ILLIT — It’s Me':'bMhDJ0S0OBA',
+  'WOODZ — Drowning':'tiKFuzpX-NA',
+  '볼빨간사춘기 — 여름아 부탁해':'-7TQpu7-IhU',
+  'YENA — 캐치 캐치':'ItSKahBISg0',
+  '한로로 — 사랑하게 될 거야':'h0KIWaUEIgQ',
+  'HWASA — Good Goodbye':'Qe8fa4b5xNU',
+  'AKMU — 소문의 낙원':'D54StAZFUrc',
 };
 
 const youtubePlaylistByPost={
@@ -160,6 +171,7 @@ const youtubePlaylistByPost={
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
+  '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
   '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
   '/posts/wednesday-mom-healing':'PLID6mtfwwfIM'
 };
