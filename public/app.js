@@ -172,6 +172,16 @@ const youtubeTracks={
   '2NE1 — 내가 제일 잘 나가 (I AM THE BEST)':'j7_lSP8Vc3o',
   'T-ARA — SUGAR FREE':'q_eo5j5sib8',
   'KARA — STEP':'zYoYoBtLqOY',
+  '성시경 — 기억의 습작':'OF4sejgmQSw',
+  '성시경 — 소녀':'mFs4WZqyPi4',
+  '성시경 — 그대 내 맘에 들어오면은':'ayrtjkmCwDY',
+  '성시경 — 비처럼 음악처럼':'jjl4CFG7AEg',
+  '성시경 — 나였으면 (With. 나윤권)':'1vkKlQr2R4U',
+  '성시경 — 중독된 사랑 (With. 조장혁)':'9f0t_4A5LZY',
+  '성시경 — 1994년 어느 늦은 밤 (With. 장혜진)':'97TgzbvazGs',
+  '성시경 — 널 사랑하지 않아':'WRih7fEueYc',
+  '성시경 — 사랑이 아니라 말하지 말아요':'K4jnu4mGCnE',
+  '성시경 — 아름다운 구속 (With. 김종서)':'n1WLUReOFcQ',
 };
 
 const youtubePlaylistByPost={
@@ -182,6 +192,7 @@ const youtubePlaylistByPost={
   '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
+  '/posts/saturday-sung-si-kyung-covers':'PLDRsIgm8BMIw',
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
   '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
