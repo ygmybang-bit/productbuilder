@@ -182,6 +182,18 @@ const youtubeTracks={
   '성시경 — 널 사랑하지 않아':'WRih7fEueYc',
   '성시경 — 사랑이 아니라 말하지 말아요':'K4jnu4mGCnE',
   '성시경 — 아름다운 구속 (With. 김종서)':'n1WLUReOFcQ',
+  'TWS — 첫 만남은 계획대로 되지 않아':'hVAc1Vf2ITU',
+  'NCT DREAM — Hello Future':'QPUjV7epJqE',
+  'TXT — 5시 53분의 하늘에서 발견한 너와 나':'Vd9QkWsd5p4',
+  'RIIZE — Get A Guitar':'iUw3LPM7OBU',
+  'BOYNEXTDOOR — Nice Guy':'HJlc_tFkB3M',
+  'ONF — Beautiful Beautiful':'0pwBFTUJBzQ',
+  'NMIXX — Love Me Like This':'EDnwWcFpObo',
+  'LE SSERAFIM — Perfect Night':'hLvWy2b857I',
+  'IVE — I AM':'6ZUIwj3FgUY',
+  '부석순 — 파이팅 해야지 (Feat. 이영지)':'mBXBOLG06Wc',
+  'SEVENTEEN — 아주 NICE':'J-wFp43XOrA',
+  'Red Velvet — Power Up':'aiHSVQy9xN8',
 };
 
 const youtubePlaylistByPost={
@@ -189,6 +201,7 @@ const youtubePlaylistByPost={
   '/posts/family-comfort-band':'PLZ7TaqakNCQM',
   '/posts/friday-club-weekend':'PLOfPSTRGpsEk',
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
+  '/posts/monday-fresh-restart':'PLI6rzVQJIY8k',
   '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
