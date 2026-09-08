@@ -194,6 +194,18 @@ const youtubeTracks={
   '부석순 — 파이팅 해야지 (Feat. 이영지)':'mBXBOLG06Wc',
   'SEVENTEEN — 아주 NICE':'J-wFp43XOrA',
   'Red Velvet — Power Up':'aiHSVQy9xN8',
+  'NCT WISH — Steady':'IKlkZZv76Ho',
+  'STAYC — ASAP':'NsY-9MCOIAQ',
+  'SEVENTEEN — _WORLD':'VCDWg0ljbFQ',
+  'TXT — 어느날 머리에서 뿔이 자랐다 (CROWN)':'W3iSnJ663II',
+  'Kep1er — Up!':'hr-325mclek',
+  'OH MY GIRL — Dun Dun Dance':'HzOjwL7IP_o',
+  'TWICE — Dance The Night Away':'Fm5iP0S1z9w',
+  'Red Velvet — Queendom':'c9RzZpV460k',
+  'IVE — After LIKE':'F0B7HDiY-10',
+  'aespa — Spicy':'Os_heh8vPfs',
+  'ENHYPEN — Tamed-Dashed':'6IRsW_TkyVA',
+  '소녀시대 — Holiday':'YwN-CN9EjTg',
 };
 
 const youtubePlaylistByPost={
@@ -209,6 +221,7 @@ const youtubePlaylistByPost={
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
   '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
+  '/posts/tuesday-dance-mood-reset':'PLWAhCXPyK0tk',
   '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
   '/posts/wednesday-mom-healing':'PLID6mtfwwfIM'
 };
