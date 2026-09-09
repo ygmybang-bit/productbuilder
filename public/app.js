@@ -206,6 +206,18 @@ const youtubeTracks={
   'aespa — Spicy':'Os_heh8vPfs',
   'ENHYPEN — Tamed-Dashed':'6IRsW_TkyVA',
   '소녀시대 — Holiday':'YwN-CN9EjTg',
+  'NewJeans — Super Shy':'ArmDp-zijuc',
+  'ILLIT — Magnetic':'Vk5-c_v4gMU',
+  'TWICE — CHEER UP':'c7rCyll5AeY',
+  'Red Velvet — Russian Roulette':'QslJYDX3o8s',
+  'SEVENTEEN — Left & Right':'HdZdxocqzq4',
+  '부석순 — 거침없이':'h-LIrDa0VeA',
+  'NCT DREAM — Beatbox':'bagFQCTHXy8',
+  'EXO — Power':'sGRv8ZBLuW0',
+  'ITZY — ICY':'zndvqTc4P9I',
+  'fromis_9 — FUN!':'zsRyyLtcXho',
+  'SHINee — Dream Girl':'vhxjEXDAy6s',
+  '소녀시대 — Gee':'U7mPqycQ0tQ',
 };
 
 const youtubePlaylistByPost={
@@ -223,7 +235,8 @@ const youtubePlaylistByPost={
   '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
   '/posts/tuesday-dance-mood-reset':'PLWAhCXPyK0tk',
   '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
-  '/posts/wednesday-mom-healing':'PLID6mtfwwfIM'
+  '/posts/wednesday-mom-healing':'PLID6mtfwwfIM',
+  '/posts/wednesday-no-coffee-energy':'PLZKj6RXEfZX0'
 };
 
 const trackHeadings=[...document.querySelectorAll('.tracklist li h2')];
