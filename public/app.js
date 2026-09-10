@@ -218,6 +218,18 @@ const youtubeTracks={
   'fromis_9 — FUN!':'zsRyyLtcXho',
   'SHINee — Dream Girl':'vhxjEXDAy6s',
   '소녀시대 — Gee':'U7mPqycQ0tQ',
+  'BIGBANG — BiiiG':'L8ZnXgbyUuc',
+  'ATEEZ — BAD':'-q_S27LbNKU',
+  'RESCENE — LOVE ATTACK':'9XttLI0oH0I',
+  'aespa — LEMONADE':'83C3TZ4Zm_o',
+  'CORTIS — REDRED':'U6BDbXIah-Y',
+  'RESCENE — Pretty Girl':'qZlu2j2SiBA',
+  'ILLIT — It’s Me':'bMhDJ0S0OBA',
+  'JENNIE — FALLEN ANGEL':'s466YCiHfKw',
+  'Hearts2Hearts — RUDE!':'F7sGJVUrkjQ',
+  'RESCENE — Deja Vu':'ZbO9PBdFRdc',
+  'TUIDE — SUN KISS':'46h0LvDHgIs',
+  'I.O.I — 갑자기 (Suddenly)':'gmjZf_Nxlec',
 };
 
 const youtubePlaylistByPost={
@@ -233,6 +245,7 @@ const youtubePlaylistByPost={
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
   '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
+  '/posts/thursday-youtube-music-idol-dance-top12':'PLQGiuJpYFV6I',
   '/posts/tuesday-dance-mood-reset':'PLWAhCXPyK0tk',
   '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
   '/posts/wednesday-mom-healing':'PLID6mtfwwfIM',
