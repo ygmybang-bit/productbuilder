@@ -242,6 +242,18 @@ const youtubeTracks={
   'PENOMECO — COCO BOTTLE':'1SihKDqBR2I',
   'MINO — BODY':'IlJHZJ8EqeA',
   'Zion.T — No Make Up':'eqcte1r3aiQ',
+  '優里 — カーテンコール (Curtain Call)':'9E_gqQ7V5P0',
+  'ざらめ — 六等星 (Rokutousei)':'5Y-2neQjQLw',
+  'Omoinotake — 蕾 (Tsubomi)':'ziInmNuf-QU',
+  'Vaundy — Gift':'sADskV54iNc',
+  'milet — Anytime Anywhere':'r105CzDvoo0',
+  'Aimer — カタオモイ (Kataomoi)':'kxs9Su_mbpU',
+  'back number — 水平線 (Suiheisen)':'iqEr3P78fz8',
+  'あいみょん — 裸の心 (Hadaka no Kokoro)':'yOAwvRmVIyo',
+  'YOASOBI — たぶん (Tabun)':'8iuLXODzL04',
+  'Fujii Kaze — Shinunoga E-Wa':'dawrQnvwMTY',
+  'Mrs. GREEN APPLE — Soranji':'44cICMd3jW4',
+  '優里 — ベテルギウス (Betelgeuse)':'cbqvxDTLMps',
 };
 
 const youtubePlaylistByPost={
@@ -253,6 +265,7 @@ const youtubePlaylistByPost={
   '/posts/monday-fresh-restart':'PLI6rzVQJIY8k',
   '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
+  '/posts/saturday-my-hero-calm-jpop':'PLRf1bof-NrNs',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
   '/posts/saturday-sung-si-kyung-covers':'PLDRsIgm8BMIw',
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
