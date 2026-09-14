@@ -1,5 +1,6 @@
 import http from 'node:http';
 import crypto from 'node:crypto';
+import { spawn } from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -80,19 +81,31 @@ async function authorize(credentials) {
   console.log('\n아래 주소를 브라우저에서 열고 YouTube 권한을 승인해 주세요:\n');
   console.log(authUrl.toString());
   console.log('\n승인 완료를 기다리는 중입니다...');
+  if (process.platform === 'win32') {
+    spawn('rundll32.exe', ['url.dll,FileProtocolHandler', authUrl.toString()], {
+      detached: true,
+      stdio: 'ignore'
+    }).unref();
+  }
 
   const code = await new Promise((resolve, reject) => {
     server.on('request', (request, response) => {
       const callback = new URL(request.url, redirectUri);
-      if (callback.searchParams.get('state') !== state) {
+      const receivedState = callback.searchParams.get('state');
+      const error = callback.searchParams.get('error');
+      const authCode = callback.searchParams.get('code');
+      if (!receivedState && !error && !authCode) {
+        response.writeHead(204);
+        response.end();
+        return;
+      }
+      if (receivedState !== state) {
         response.writeHead(400, { 'content-type': 'text/plain; charset=utf-8' });
         response.end('잘못된 OAuth 요청입니다.');
         reject(new Error('OAuth state 불일치'));
         server.close();
         return;
       }
-      const error = callback.searchParams.get('error');
-      const authCode = callback.searchParams.get('code');
       response.writeHead(error || !authCode ? 400 : 200, { 'content-type': 'text/html; charset=utf-8' });
       response.end(error || !authCode
         ? '<h1>승인이 취소되었습니다.</h1><p>이 창을 닫아도 됩니다.</p>'

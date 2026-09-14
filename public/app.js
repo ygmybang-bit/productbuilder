@@ -275,6 +275,7 @@ const youtubePlaylistByPost={
   '/posts/friday-date-night-hiphop':'PLPcFu50xMugE',
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
   '/posts/monday-fresh-restart':'PLI6rzVQJIY8k',
+  '/posts/monday-post-workout-unwind':'PLEh0JCfNFr8w',
   '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
   '/posts/saturday-my-hero-calm-jpop':'PLRf1bof-NrNs',
