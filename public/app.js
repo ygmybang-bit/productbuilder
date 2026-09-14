@@ -254,6 +254,18 @@ const youtubeTracks={
   'Fujii Kaze — Shinunoga E-Wa':'dawrQnvwMTY',
   'Mrs. GREEN APPLE — Soranji':'44cICMd3jW4',
   '優里 — ベテルギウス (Betelgeuse)':'cbqvxDTLMps',
+  'LE SSERAFIM — Impurities':'Ccz123Jlflc',
+  'NCT DOJAEJUNG — Perfume':'7nRiE4sLLxE',
+  'BAEKHYUN — Candy':'gmgcRWxhmqY',
+  'Red Velvet — Automatic':'px2Q47O0_eE',
+  'EXO-CBX — Blooming Day':'Ib674A1yMtg',
+  'TWICE — Alcohol-Free':'XA2YEHn-A8Q',
+  'TAEMIN — MOVE':'rcEyUNeZqmY',
+  'BTS — 잠시 (Telepathy)':'jzHtHAg2igc',
+  'SEVENTEEN — 어쩌나 (Oh My!)':'_5PELxP8Udg',
+  'SHINee — 데리러 가 (Good Evening)':'7dGwk5-QMpc',
+  'IU — 라일락 (LILAC)':'v7bnOxV4jAc',
+  'BTOB — 너 없인 안 된다 (Only One for Me)':'fHQkdIGue3k',
 };
 
 const youtubePlaylistByPost={
