@@ -318,16 +318,44 @@ if(trackHeadings.length){
   playerShell.className='youtube-player-shell';
   playerShell.hidden=true;
   playerShell.setAttribute('aria-label','YouTube 음악 플레이어');
-  playerShell.innerHTML='<div class="youtube-player-head"><div><span>OFFICIAL VIDEO · YOUTUBE</span><strong data-player-title>곡을 선택해 주세요</strong><small data-player-progress></small><a data-player-youtube-link href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube 앱에서 이 곡 듣기</a></div><button type="button" data-player-close aria-label="플레이어 닫기">×</button></div><div class="youtube-player-frame"><div data-youtube-player></div></div>';
+  playerShell.innerHTML='<div class="youtube-player-head"><div><span>OFFICIAL VIDEO · YOUTUBE</span><strong data-player-title>곡을 선택해 주세요</strong><small data-player-progress></small><a data-player-youtube-link href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube에서 선택한 곡부터 이어 듣기</a></div><button type="button" data-player-close aria-label="플레이어 닫기">×</button></div><div class="youtube-player-frame"><div data-youtube-player></div></div><div class="youtube-player-help"><button type="button" data-player-blocked>로그인·봇 확인이 뜨나요?</button><div data-player-recovery hidden><p role="status">YouTube의 사용자 확인은 사이트에서 해제할 수 없습니다. 선택한 곡과 같은 재생목록을 YouTube 앱 또는 브라우저에서 이어 들어주세요.</p><a data-player-recovery-link href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube에서 이어 듣기 ↗</a><button type="button" data-player-retry>사이트에서 다시 시도</button></div></div>';
   document.body.append(playerShell);
   const playerElement=playerShell.querySelector('[data-youtube-player]');
   const nowPlaying=playerShell.querySelector('[data-player-title]');
   const progress=playerShell.querySelector('[data-player-progress]');
   const playerYouTubeLink=playerShell.querySelector('[data-player-youtube-link]');
+  const recovery=playerShell.querySelector('[data-player-recovery]');
+  const recoveryLink=playerShell.querySelector('[data-player-recovery-link]');
   let player;
   let currentIndex=-1;
   let currentTrackHasPlayed=false;
   let playerReady;
+  let playRequestId=0;
+  let playerGeneration=0;
+  let nextTrackTimer;
+  const watchUrl=index=>{
+    const params=new URLSearchParams({v:tracks[index].videoId});
+    if(youtubePlaylistId){
+      params.set('list',youtubePlaylistId);
+      params.set('index',String(index+1));
+    }
+    return `https://www.youtube.com/watch?${params}`;
+  };
+  const stopPlayback=()=>{
+    playRequestId++;
+    playerGeneration++;
+    clearTimeout(nextTrackTimer);
+    player?.destroy();
+    player=undefined;
+    playerReady=undefined;
+    currentTrackHasPlayed=false;
+    playerElement.replaceChildren();
+  };
+  const showRecovery=message=>{
+    clearTimeout(nextTrackTimer);
+    progress.textContent=message;
+    recovery.hidden=false;
+  };
   const loadYouTubeApi=()=>{
     if(window.YT?.Player)return Promise.resolve();
     if(window.youtubeIframeApiReady)return window.youtubeIframeApiReady;
@@ -348,7 +376,9 @@ if(trackHeadings.length){
     const track=tracks[index];
     track.button?.classList.add('is-playing');
     nowPlaying.textContent=track.title;
-    playerYouTubeLink.href=`https://www.youtube.com/watch?v=${track.videoId}`;
+    playerYouTubeLink.href=watchUrl(index);
+    recoveryLink.href=watchUrl(index);
+    recovery.hidden=true;
     progress.textContent=`${index+1} / ${tracks.length} · 종료 후 다음 곡 자동 재생`;
     currentIndex=index;
     currentTrackHasPlayed=false;
@@ -363,7 +393,8 @@ if(trackHeadings.length){
       return;
     }
     if(afterError)progress.textContent='현재 영상을 재생할 수 없어 다음 곡으로 이동합니다';
-    setTimeout(()=>{
+    clearTimeout(nextTrackTimer);
+    nextTrackTimer=setTimeout(()=>{
       setActiveTrack(nextIndex);
       if(youtubePlaylistId)player.nextVideo();
       else player.loadVideoById(tracks[nextIndex].videoId);
@@ -371,20 +402,24 @@ if(trackHeadings.length){
   };
   const handlePlayerError=event=>{
     const errorCode=event.data;
-    if([100,101,150].includes(errorCode)){
+    if(errorCode===100){
       playNextTrack(true);
       return;
     }
-    progress.textContent=errorCode===153
+    showRecovery(errorCode===153
       ?'YouTube가 재생 요청을 확인하지 못했습니다 · 아래 링크로 YouTube에서 들어주세요'
-      :'YouTube에서 사용자 확인이 필요할 수 있습니다 · 아래 링크로 YouTube에서 들어주세요';
+      :'재생 제한 또는 사용자 확인이 필요합니다 · 선택한 곡부터 YouTube에서 이어 들어주세요');
   };
   const ensurePlayer=async()=>{
     if(playerReady)return playerReady;
+    const generation=playerGeneration;
     playerReady=(async()=>{
       await loadYouTubeApi();
+      if(generation!==playerGeneration)return;
       return new Promise(resolve=>{
-        player=new YT.Player(playerElement,{
+        const mount=document.createElement('div');
+        playerElement.replaceChildren(mount);
+        player=new YT.Player(mount,{
           width:'100%',
           height:'100%',
           host:'https://www.youtube.com',
@@ -398,18 +433,24 @@ if(trackHeadings.length){
           events:{
             onReady:resolve,
             onStateChange:event=>{
+              if(generation!==playerGeneration)return;
               if(event.data===YT.PlayerState.PLAYING){
                 currentTrackHasPlayed=true;
-                const playlistIndex=player.getPlaylistIndex?.();
+                const playlistIndex=player?.getPlaylistIndex?.();
                 if(youtubePlaylistId&&playlistIndex>=0&&playlistIndex<tracks.length&&playlistIndex!==currentIndex){
                   setActiveTrack(playlistIndex);
                 }
               }
-              if(!youtubePlaylistId&&event.data===YT.PlayerState.ENDED&&currentTrackHasPlayed&&currentIndex<tracks.length-1){
+              if(!youtubePlaylistId&&event.data===YT.PlayerState.ENDED&&currentTrackHasPlayed){
                 playNextTrack();
               }
             },
-            onError:handlePlayerError
+            onError:event=>{
+              if(generation===playerGeneration)handlePlayerError(event);
+            },
+            onAutoplayBlocked:()=>{
+              if(generation===playerGeneration)showRecovery('자동 재생이 차단됐습니다 · 영상의 재생 버튼을 누르거나 YouTube에서 이어 들어주세요');
+            }
           }
         });
       });
@@ -421,6 +462,7 @@ if(trackHeadings.length){
     nowPlaying.textContent=`${tracks[index].title}부터 연속 재생`;
     const iframe=document.createElement('iframe');
     const params=new URLSearchParams({
+      listType:'playlist',
       list:youtubePlaylistId,
       index:String(index),
       autoplay:'1',
@@ -437,12 +479,15 @@ if(trackHeadings.length){
     playerElement.replaceChildren(iframe);
   };
   const play=async index=>{
+    const requestId=++playRequestId;
+    clearTimeout(nextTrackTimer);
     if(youtubePlaylistId){
       playEmbeddedPlaylist(index);
       return;
     }
     setActiveTrack(index);
     await ensurePlayer();
+    if(requestId!==playRequestId)return;
     player.loadVideoById(tracks[index].videoId);
   };
   trackHeadings.forEach(heading=>{
@@ -463,7 +508,8 @@ if(trackHeadings.length){
     }
     const link=document.createElement('a');
     link.className='track-youtube-link';
-    link.href=videoId?`https://www.youtube.com/watch?v=${videoId}`:`https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} official`)}`;
+    const index=tracks.findIndex(track=>track.heading===heading);
+    link.href=videoId?watchUrl(index):`https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} official`)}`;
     link.target='_blank';
     link.rel='noopener';
     link.textContent=videoId?'YouTube에서 열기 ↗':'YouTube에서 찾기 ↗';
@@ -481,11 +527,17 @@ if(trackHeadings.length){
     serviceButtons.prepend(playlistButton);
   }
   playerShell.querySelector('[data-player-close]').addEventListener('click',()=>{
-    player?.stopVideo();
-    playerElement.replaceChildren();
+    stopPlayback();
     playerShell.hidden=true;
     currentIndex=-1;
     document.querySelectorAll('.track-play.is-playing').forEach(item=>item.classList.remove('is-playing'));
+  });
+  playerShell.querySelector('[data-player-blocked]').addEventListener('click',()=>{
+    stopPlayback();
+    showRecovery('사이트 재생을 멈췄습니다 · 선택한 곡부터 YouTube에서 이어 들어주세요');
+  });
+  playerShell.querySelector('[data-player-retry]').addEventListener('click',()=>{
+    if(currentIndex>=0)return play(currentIndex);
   });
 }
 
