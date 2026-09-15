@@ -266,6 +266,18 @@ const youtubeTracks={
   'SHINee — 데리러 가 (Good Evening)':'7dGwk5-QMpc',
   'IU — 라일락 (LILAC)':'v7bnOxV4jAc',
   'BTOB — 너 없인 안 된다 (Only One for Me)':'fHQkdIGue3k',
+  '백예린 — Square (2017)':'4iFP_wd6QU8',
+  '샘김 — Seattle':'NrhiAhozWZk',
+  '적재 — 별 보러 가자':'JLT8qOdpDPM',
+  '조원선 — 도레미파솔라시도':'ambSacGKPew',
+  '권진아 — 위로':'qMkQ3lAD418',
+  '정승환 — 보통의 하루':'GRWh711Y_dw',
+  '종현 — 하루의 끝':'wGP-gfCWXYI',
+  '아이유 — 마음':'he2C4lx63M0',
+  '정준일 — 안아줘':'YPBeItQC2Cw',
+  '선우정아 — 도망가자':'GOS6C2jXTa8',
+  '김동률 — 감사':'WvJb1PtpHB4',
+  '브로콜리너마저 — 유자차':'y95EpV5KKgI',
 };
 
 const youtubePlaylistByPost={
@@ -286,6 +298,7 @@ const youtubePlaylistByPost={
   '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
   '/posts/thursday-youtube-music-idol-dance-top12':'PLQGiuJpYFV6I',
   '/posts/tuesday-dance-mood-reset':'PLWAhCXPyK0tk',
+  '/posts/tuesday-contract-done-quiet-evening':'PLEENx4_BAFy8',
   '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
   '/posts/wednesday-mom-healing':'PLID6mtfwwfIM',
   '/posts/wednesday-no-coffee-energy':'PLZKj6RXEfZX0'
