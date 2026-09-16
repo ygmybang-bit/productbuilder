@@ -96,6 +96,9 @@ const youtubeTracks={
   'FTISLAND — 바래':'R0Far5Y9ZCs',
   'LUCY — 조깅 (Jogging)':'YdWBnqQgqSk',
   'DAY6 — 한 페이지가 될 수 있게':'vnS_jn2uibs',
+  'LISA — SaWaDiKa':'FyS5dAywkEo',
+  'SOYEON — 퇴사할게여 (Narr. 기안84)':'7mDDM0eBWR0',
+  'JISOO — CLICK':'sf02ugzPFE4',
   'BIGBANG — BiiiG':'L8ZnXgbyUuc',
   'BIGBANG — FANTASTIC BABY':'AAbokV76tkU',
   'BIGBANG — BANG BANG BANG':'2ips2mM7Zqw',
@@ -300,6 +303,7 @@ const youtubePlaylistByPost={
   '/posts/tuesday-dance-mood-reset':'PLWAhCXPyK0tk',
   '/posts/tuesday-contract-done-quiet-evening':'PLEENx4_BAFy8',
   '/posts/tuesday-rainy-healing':'PLEiTAjkZnapg',
+  '/posts/wednesday-fresh-korea-chart-bigbang':'PLRWArNpgoxKA',
   '/posts/wednesday-mom-healing':'PLID6mtfwwfIM',
   '/posts/wednesday-no-coffee-energy':'PLZKj6RXEfZX0'
 };
