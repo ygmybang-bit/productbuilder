@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'AKMU — 후라이의 꿈':'3kGAlp_PNUg',
+  'S.E.S. — 달리기':'yEt2JFIlUa0',
+  'Apink — NoNoNo':'hspqQuuuGIw',
+  '소녀시대 — 힘 내! (Way To Go)':'_0Ke2fThnG0',
+  'TWICE — CHEER UP':'c7rCyll5AeY',
+  'STAYC — Teddy Bear':'SxHmoifp0oQ',
+  'YENA — SMILEY (Feat. BIBI)':'y9kkXTucnLU',
+  'Red Velvet — 행복 (Happiness)':'JFgv8bKfxEs',
+  'OH MY GIRL — Dolphin':'oaRTMjLdiDw',
+  'WJSN — 이루리 (As You Wish)':'2Q9G6R2hKIQ',
+  '마야 — 나를 외치다':'mIMGc9bjwk8',
+  'god — 촛불하나':'IJRo4GJqTfE',
   'TWICE — YES or YES':'mAKsZ26SabQ',
   '아이유 — Celebrity':'0-q1KafFCLU',
   'iKON — LOVE SCENARIO':'vecSVX1QYbQ',
@@ -299,6 +311,7 @@ const youtubePlaylistByPost={
   '/posts/sunday-factory-staff-picks':'PLL_pdjD4jYSY',
   '/posts/thursday-commute-hiphop':'PLUd3vGxicp0w',
   '/posts/thursday-melon-top100-trends':'PLTuFnrmquq-g',
+  '/posts/thursday-mom-night-cheer':'PLbQzpj7DYSls',
   '/posts/thursday-youtube-music-idol-dance-top12':'PLQGiuJpYFV6I',
   '/posts/tuesday-dance-mood-reset':'PLWAhCXPyK0tk',
   '/posts/tuesday-contract-done-quiet-evening':'PLEENx4_BAFy8',
