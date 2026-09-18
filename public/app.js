@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'Jpopyangon — Tired of Asking':'hQCqFgLbqjs',
+  'DPR IAN — So Beautiful':'7QQzDQceGgU',
+  'The Rose — She’s In The Rain':'IN1Bmqn3JXI',
+  'EPIK HIGH — 우산 (Feat. 윤하)':'NIPtyAKxlRs',
+  'TABLO — Airbag (Feat. 나얼)':'-hXaZzRyLSE',
+  'NELL — 기억을 걷는 시간':'HW5HU6o1eMA',
+  'DEAN — instagram':'wKyMIrBClYw',
+  'RM — forever rain':'Cvb76hBX_Oc',
+  'Agust D — AMYGDALA':'IX1dkYoLHVs',
+  'DPR IAN — Nerves':'KlEbnOZ9DZQ',
+  'TAEYEON — 월식 (My Tragedy)':'km3N4IyLq7M',
+  'AKMU — 얼음들 (MELTED)':'sUCIzn0mRHc',
   'NORAZO — 사이다 (CIDER)':'O6BJiije6m4',
   'ORANGE CARAMEL — 까탈레나 (Catallena)':'Med2XipHJJM',
   'CRAYON POP — 빠빠빠 (Bar Bar Bar)':'yMqL1iWfku4',
@@ -311,6 +323,7 @@ const youtubePlaylistByPost={
   '/posts/family-comfort-band':'PLZ7TaqakNCQM',
   '/posts/friday-club-weekend':'PLOfPSTRGpsEk',
   '/posts/friday-date-night-hiphop':'PLPcFu50xMugE',
+  '/posts/friday-exhausted-dark-night':'PLa3BM__1fIJg',
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
   '/posts/friday-sleepless-funny-commute':'PLXLF74d6lp_k',
   '/posts/monday-fresh-restart':'PLI6rzVQJIY8k',
