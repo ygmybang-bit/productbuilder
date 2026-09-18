@@ -39,6 +39,17 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'NORAZO — 사이다 (CIDER)':'O6BJiije6m4',
+  'ORANGE CARAMEL — 까탈레나 (Catallena)':'Med2XipHJJM',
+  'CRAYON POP — 빠빠빠 (Bar Bar Bar)':'yMqL1iWfku4',
+  'CELEB FIVE — 셀럽파이브 (셀럽이 되고 싶어)':'GsqG9k6LOE0',
+  'UV — 이태원 프리덤 (With J.Y. Park)':'3N8c1t1QTDI',
+  'PSY — New Face':'OwJPPaEyqhI',
+  '인크레더블, 타블로, 지누션 — 오빠차':'6oI487adZKY',
+  'KOYOTE — 순정':'MHCBoNhQmCk',
+  'SHINee — Ring Ding Dong':'roughtzsCDI',
+  'YENA — 네모네모 (NEMONEMO)':'j_kWethGokY',
+  '김연자 — 아모르 파티':'56Yy0tjJGSc',
   'AKMU — 후라이의 꿈':'3kGAlp_PNUg',
   'S.E.S. — 달리기':'yEt2JFIlUa0',
   'Apink — NoNoNo':'hspqQuuuGIw',
@@ -301,6 +312,7 @@ const youtubePlaylistByPost={
   '/posts/friday-club-weekend':'PLOfPSTRGpsEk',
   '/posts/friday-date-night-hiphop':'PLPcFu50xMugE',
   '/posts/friday-girl-group-hits':'PLeQKXZdbj9-I',
+  '/posts/friday-sleepless-funny-commute':'PLXLF74d6lp_k',
   '/posts/monday-fresh-restart':'PLI6rzVQJIY8k',
   '/posts/monday-post-workout-unwind':'PLEh0JCfNFr8w',
   '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
