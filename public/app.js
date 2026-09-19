@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'H.O.T. — 빛 (Hope)':'dfN1UHjrzNg',
+  'BTOB — 괜찮아요 (It’s Okay)':'SNpuKLfv1EE',
+  'H1-KEY — 건물 사이에 피어난 장미 (Rose Blossom)':'vfUAckewh_8',
+  'YB — 나는 나비':'YPorsVdgcIU',
+  'Jaurim — 하하하쏭':'yoyZsmAU4g8',
+  'SEVENTEEN — 음악의 신':'zSQ48zyWZrY',
+  'DAY6 — DANCE DANCE':'NAW0idSQ6Zs',
+  'N.Flying — 진짜가 나타났다':'WUYzVohEAyE',
+  'Rumble Fish — 으라차차':'ucwpn56kiNI',
+  'WJSN — HAPPY':'sZVB_zCBlCU',
+  'TURBO — Twist King':'Ngyjoe86hPg',
+  'MAMAMOO — 고고베베 (gogobebe)':'Oao3j2hUVvE',
   'Jpopyangon — Tired of Asking':'hQCqFgLbqjs',
   'DPR IAN — So Beautiful':'7QQzDQceGgU',
   'The Rose — She’s In The Rain':'IN1Bmqn3JXI',
@@ -330,6 +342,7 @@ const youtubePlaylistByPost={
   '/posts/monday-post-workout-unwind':'PLEh0JCfNFr8w',
   '/posts/monday-star-worker-picks':'PLKaJYvfhYxO4',
   '/posts/saturday-bts-work-energy':'PLLgkOPVwGIQ8',
+  '/posts/saturday-family-photo-production':'PLEP7htTtF-2s',
   '/posts/saturday-my-hero-calm-jpop':'PLRf1bof-NrNs',
   '/posts/saturday-sleepy-mood':'PLWZU3r7W2XL8',
   '/posts/saturday-sung-si-kyung-covers':'PLDRsIgm8BMIw',
