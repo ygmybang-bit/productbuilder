@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  '아이유 — 가을 아침':'QT9XfbtVAbE',
+  'AKMU — 시간과 낙엽':'qsy-zJXLchk',
+  'JANNABI — 가을밤에 든 생각':'9T_uq_HpfyQ',
+  '윤도현 — 가을 우체국 앞에서':'mhooCdRgMGk',
+  '10CM — 쓰담쓰담':'adAQI6B-DMY',
+  '윤하 — 오르트구름':'TqFLIZG_aXA',
+  '이진아 — 냠냠냠 (Rebooted Ver. with TAK)':'35mqjYAz87M',
+  'BOL4 — 여행':'xRbPAVnqtcs',
+  '멜로망스 — 선물':'qYYJqWsBb1U',
+  '버스커 버스커 — 처음엔 사랑이란게':'KEk98JAPt80',
+  '적재 — 나랑 같이 걸을래':'u0A05HpfDF8',
+  'STANDING EGG — Little Star':'dI8NZsjRyGk',
   'H.O.T. — 빛 (Hope)':'dfN1UHjrzNg',
   'BTOB — 괜찮아요 (It’s Okay)':'SNpuKLfv1EE',
   'H1-KEY — 건물 사이에 피어난 장미 (Rose Blossom)':'vfUAckewh_8',
@@ -331,6 +343,7 @@ const youtubeTracks={
 };
 
 const youtubePlaylistByPost={
+  '/posts/sunday-autumn-home-reset':'PLaWuC1tKF7y4',
   '/posts/bigbang-memory':'PLSoKd3JQJZkU',
   '/posts/family-comfort-band':'PLZ7TaqakNCQM',
   '/posts/friday-club-weekend':'PLOfPSTRGpsEk',
