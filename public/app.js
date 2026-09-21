@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'AKMU — Love Lee':'EIz09kLzN9k',
+  'IU — strawberry moon':'sqgxcCjD04s',
+  'SEVENTEEN — 힐링 (Healing)':'BZD5m9K8hxk',
+  'STAYC — Bubble':'3-ptVHZZdBg',
+  'KISS OF LIFE — Sticky':'IajeQM00yfE',
+  'RIIZE — Boom Boom Bass':'78lNnCitcBM',
+  'BOYNEXTDOOR — Earth, Wind & Fire':'u9nP3qXQA4o',
+  'NCT DREAM — We Young':'h3aP1cxwCyk',
+  'OH MY GIRL — BUNGEE (Fall in Love)':'QTD_yleCK9Y',
+  'YOUNHA — 사건의 지평선 (Event Horizon)':'BBdC1rl5sKY',
+  'DAY6 — 한 페이지가 될 수 있게 (Time of Our Life)':'vnS_jn2uibs',
+  'BTS — 21세기 소녀 (21st Century Girl)':'JKlFuOpPhrk',
   '아이유 — 가을 아침':'QT9XfbtVAbE',
   'AKMU — 시간과 낙엽':'qsy-zJXLchk',
   'JANNABI — 가을밤에 든 생각':'9T_uq_HpfyQ',
@@ -343,6 +355,7 @@ const youtubeTracks={
 };
 
 const youtubePlaylistByPost={
+  '/posts/monday-dog-woke-me-up':'PLfIigK1xzGSo',
   '/posts/sunday-autumn-home-reset':'PLaWuC1tKF7y4',
   '/posts/bigbang-memory':'PLSoKd3JQJZkU',
   '/posts/family-comfort-band':'PLZ7TaqakNCQM',
