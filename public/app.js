@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'IU — Love wins all':'JleoAppaxi0',
+  'LEE HI — 홀로 (HOLO)':'VdeK_VsG9U0',
+  'DAY6 — 예뻤어 (You Were Beautiful)':'BS7tz2rAOSA',
+  'BOL4 — 나의 사춘기에게 (To My Youth)':'yH2avtBbG6Y',
+  'TAEYEON — Fine':'NHXUM-6a3dU',
+  'SEVENTEEN — 어른 아이 (Kidult)':'s4jHQXd-7gg',
+  'EPIK HIGH — 빈차 (Home Is Far Away)':'pTD9Jysi3_g',
+  'ZICO — 남겨짐에 대해 (Being left)':'Hk_fTyey11I',
+  'BTS — Life Goes On':'-5q5mZbe3V8',
+  'WINNER — 공허해 (EMPTY)':'gEqlF5N8UMs',
+  'AKMU — 사람들이 움직이는 게 (How People Move)':'sbc2yBheAbo',
+  'JONGHYUN — 하루의 끝 (End of a day)':'wGP-gfCWXYI',
   'AKMU — Love Lee':'EIz09kLzN9k',
   'IU — strawberry moon':'sqgxcCjD04s',
   'SEVENTEEN — 힐링 (Healing)':'BZD5m9K8hxk',
@@ -355,6 +367,7 @@ const youtubeTracks={
 };
 
 const youtubePlaylistByPost={
+  '/posts/tuesday-main-work-priority':'PLYqi5lnSsfL4',
   '/posts/monday-dog-woke-me-up':'PLfIigK1xzGSo',
   '/posts/sunday-autumn-home-reset':'PLaWuC1tKF7y4',
   '/posts/bigbang-memory':'PLSoKd3JQJZkU',
