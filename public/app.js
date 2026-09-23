@@ -39,6 +39,18 @@ copyTracklistButton?.addEventListener('click',async event=>{
 });
 
 const youtubeTracks={
+  'SHINee — 네가 남겨둔 말 (Our Page)':'Psl-x_nw7TI',
+  'Heize — Jenga':'uw_HR9jIJww',
+  'Yerin Baek — Bye bye my blue':'WbhK3wMXluE',
+  'BTS — Take Two':'owjVpYCmwcg',
+  'Jung Seung Hwan — 너였다면 (If It Is You)':'D0_9KxhyJns',
+  'Crush — 나빠 (NAPPA)':'OoMIAo0a2TA',
+  '10CM — HELP':'LnT9LmmlLXw',
+  'IU — 밤편지 (Through the Night)':'BzYnNdJhZQw',
+  'WENDY — Like Water':'-Ih5UArd4zk',
+  'BTOB — 그리워하다 (Missing You)':'wDkjWSt3HOM',
+  '적재 — 별 보러 가자':'JLT8qOdpDPM',
+  'JONGHYUN — 하루의 끝 (End of a day)':'wGP-gfCWXYI',
   'IU — Love wins all':'JleoAppaxi0',
   'LEE HI — 홀로 (HOLO)':'VdeK_VsG9U0',
   'DAY6 — 예뻤어 (You Were Beautiful)':'BS7tz2rAOSA',
@@ -367,6 +379,7 @@ const youtubeTracks={
 };
 
 const youtubePlaylistByPost={
+  '/posts/wednesday-sleeping-at-work-reset':'PLeF6wB4EfBsw',
   '/posts/tuesday-main-work-priority':'PLYqi5lnSsfL4',
   '/posts/monday-dog-woke-me-up':'PLfIigK1xzGSo',
   '/posts/sunday-autumn-home-reset':'PLaWuC1tKF7y4',
@@ -612,6 +625,8 @@ if(trackHeadings.length){
   });
   const serviceButtons=document.querySelector('.listen-panel .service-buttons');
   if(serviceButtons&&tracks.length){
+    const externalPlaylistLink=serviceButtons.querySelector('a[href*="youtube.com/playlist"]');
+    if(externalPlaylistLink&&youtubePlaylistId)externalPlaylistLink.href=`https://www.youtube.com/playlist?list=${youtubePlaylistId}`;
     const playlistButton=document.createElement('button');
     playlistButton.className='service-button';
     playlistButton.type='button';
